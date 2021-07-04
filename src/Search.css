@@ -1,6 +1,10 @@
 .searchbox-wrap{
     color:black;
-    margin-bottom: 20px;
     text-align: center;
     font-size: calc(10px + 2vmin);
+}
+.search_results{
+    min-height: 100vh;
+    margin-top: 20px;
+
 }
