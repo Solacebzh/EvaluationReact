@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Search from './Search.js'
+import SerieList from './SerieList.js'
+import './App.css'
+import { useState, useEffect } from 'react'
+export default function App(){
+    const [showsData, SetShowsData] = useState([]);
+    useEffect(()=> {
+    fetch('http://localhost:4000/rest/shows')
+      .then(response => response.json())
+      .then(show => SetShowsData(show))
+    }, [])
+    
+    return(
+        <div className="main">
+            <header className="App-header">
+                <h1 className="title">Plateforme NETFLI</h1>
+            </header>
+            <main>
+                <section>
+                <Search/>
+                    <SerieList series={showsData}/>
+                </section>
+            </main>
+        </div>
+    )
 }
-
-export default App;
